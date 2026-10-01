@@ -8,7 +8,26 @@
 </head>
 <body>
 
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer__head"><span class="topbar__glyph">K5</span><div><strong>OSİN KATMAN5</strong><div class="muted">@BY_SADRAZAM</div></div></div>
+  <div class="drawer__group">Araçlar</div>
+  <button class="drawer__item" data-go="profil">◎ Profil Taraması</button>
+  <button class="drawer__item" data-go="alanadi">⌁ Alan Adı</button>
+  <button class="drawer__item" data-go="ip">▢ IP Bilgisi</button>
+  <button class="drawer__item" data-go="eposta">✉ E-posta Teknik</button>
+  <button class="drawer__item" data-go="exif">◈ EXIF Analiz</button>
+  <button class="drawer__item" data-go="url">↗ URL Analiz</button>
+  <button class="drawer__item" data-go="donustur">⇄ Dönüştürücü</button>
+  <div class="drawer__group">Kayıtlar</div>
+  <button class="drawer__item" data-go="gecmis">⟲ Arama Geçmişi</button>
+  <button class="drawer__item" data-go="notlar">✎ Notlar</button>
+  <div class="drawer__group">Diğer</div>
+  <button class="drawer__item" data-go="hakkinda">i Hakkında</button>
+</aside>
+
 <header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Menü">☰</button>
   <div class="topbar__mark">
     <span class="topbar__glyph">K5</span>
     <div class="topbar__title">
@@ -27,7 +46,7 @@
   <!-- PROFİL TARAMASI -->
   <section class="screen active" data-screen="profil">
     <h1 class="screen__title">Platform Profil Taraması</h1>
-    <p class="screen__hint">Bir kullanıcı adı girin, sonra kontrol etmek istediğiniz platforma dokunun. Her platform herkese açık profil sayfasını açar; var olup olmadığını orada gözle teyit edersiniz.</p>
+    <p class="screen__hint">Bir kullanıcı adı girin, sonra kontrol etmek istediğiniz platforma dokunun. Sonuç, aşağıdaki kutuda uygulamanın içinde görünür. Herkese açık profil önizlemesi okunur; platform önizleme vermezse uygulama içi tarayıcıyla açabilirsiniz.</p>
 
     <div class="field">
       <label for="unameInput">Kullanıcı adı</label>
@@ -53,6 +72,8 @@
       <button class="btn" id="btnDns">DNS Kayıtları</button>
       <button class="btn" id="btnRdap">Kayıt Bilgisi (RDAP)</button>
       <button class="btn" id="btnSubs">Alt Alan Adları</button>
+      <button class="btn" id="btnSsl">SSL Detayı</button>
+      <button class="btn" id="btnWayback">Wayback</button>
     </div>
 
     <div class="panel" id="domainResults"></div>
@@ -70,9 +91,22 @@
 
     <div class="btn-row">
       <button class="btn" id="btnIp">Sorgula</button>
+      <button class="btn" id="btnShodan">Shodan InternetDB</button>
     </div>
 
     <div class="panel" id="ipResults"></div>
+  </section>
+
+  <!-- E-POSTA (TEKNİK) -->
+  <section class="screen" data-screen="eposta">
+    <h1 class="screen__title">E-posta Teknik Kontrol</h1>
+    <p class="screen__hint">Kişi hakkında bilgi toplamaz; adresin biçimini ve alan adının herkese açık posta altyapısını (MX, SPF, DMARC), geçici servis durumunu ve alan adı sızıntı istatistiğini gösterir.</p>
+    <div class="field">
+      <label for="emailInput">E-posta adresi</label>
+      <input type="email" id="emailInput" placeholder="örn. ad@example.com" autocapitalize="none" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="btn-row"><button class="btn" id="btnEmail">Kontrol Et</button></div>
+    <div class="panel" id="emailResults"></div>
   </section>
 
   <!-- EXIF -->
@@ -104,6 +138,42 @@
     </div>
 
     <div class="panel" id="urlResults"></div>
+  </section>
+
+  <!-- DÖNÜŞTÜRÜCÜ -->
+  <section class="screen" data-screen="donustur">
+    <h1 class="screen__title">Dönüştürücü</h1>
+    <p class="screen__hint">Metni cihaz üzerinde kodlar, çözer veya özetini (hash) çıkarır. Hiçbir veri dışarı gönderilmez.</p>
+    <div class="field">
+      <label for="convInput">Metin</label>
+      <textarea id="convInput" rows="4" placeholder="Metni buraya yazın" autocapitalize="none" spellcheck="false"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn" data-conv="b64e">Base64 Kodla</button>
+      <button class="btn" data-conv="b64d">Base64 Çöz</button>
+      <button class="btn" data-conv="urle">URL Kodla</button>
+      <button class="btn" data-conv="urld">URL Çöz</button>
+      <button class="btn" data-conv="hexe">Hex</button>
+      <button class="btn" data-conv="sha256">SHA-256</button>
+    </div>
+    <div class="panel" id="convResults"></div>
+  </section>
+
+  <!-- GEÇMİŞ -->
+  <section class="screen" data-screen="gecmis">
+    <h1 class="screen__title">Arama Geçmişi</h1>
+    <p class="screen__hint">Son sorgularınız yalnızca bu cihazda saklanır. Birine dokunarak tekrar sorgulayabilirsiniz.</p>
+    <div class="btn-row"><button class="btn" id="btnClearHist">Geçmişi Temizle</button></div>
+    <div class="panel" id="histList"></div>
+  </section>
+
+  <!-- NOTLAR -->
+  <section class="screen" data-screen="notlar">
+    <h1 class="screen__title">Notlar</h1>
+    <p class="screen__hint">Bulgularınızı not alın. Notlar yalnızca bu cihazda saklanır.</p>
+    <div class="field"><textarea id="noteArea" rows="12" placeholder="Notlarınız…"></textarea></div>
+    <div class="btn-row"><button class="btn" id="btnCopyNote">Kopyala</button><button class="btn" id="btnClearNote">Temizle</button></div>
+    <div class="muted" id="noteState"></div>
   </section>
 
   <!-- HAKKINDA -->

@@ -12,8 +12,12 @@ tek bir web arayüzünden (`www/index.html`) oluşan Android uygulaması.
 - **Alan Adı İstihbaratı** — DNS kayıtları (Google DNS-over-HTTPS), RDAP kayıt bilgisi,
   sertifika şeffaflığı üzerinden alt alan adı listesi (crt.sh).
 - **IP Bilgisi** — herkese açık IP coğrafi konum / ASN verisi (ipapi.co).
+- **Alan Adı (ek)** — SSL sertifika detayı (crt.sh) ve Wayback Machine arşiv kaydı.
+- **IP (ek)** — Shodan InternetDB'den pasif, herkese açık port/CVE özeti.
+- **E-posta Teknik Kontrol** — biçim/geçerlilik, MX/SPF/DMARC, geçici servis tespiti,
+  Gravatar var/yok ve alan adı sızıntı istatistiği (HIBP). Kişi hakkında profil çıkarmaz.
 - **EXIF Analiz** — JPEG meta verisini tamamen cihaz üzerinde okur, hiçbir veri dışarı
-  gönderilmez.
+  gönderilmez. GPS varsa “Haritada Aç” (OpenStreetMap) ve koordinat kopyalama sunar.
 - **URL Analiz** — bağlantı yapısını istemci tarafında çözümler.
 
 Bu uygulama; SQL enjeksiyonu, şifre/kimlik bilgisi toplama, wifi/cihaz taraması veya

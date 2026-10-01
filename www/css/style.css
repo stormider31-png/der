@@ -230,3 +230,21 @@ body{
 }
 .tab__icon{ font-size:16px; line-height:1; }
 .tab.active{ color: var(--accent); }
+
+/* Çekmece menü */
+.menu-btn{ background:none; border:1px solid var(--line); color:var(--text); border-radius:8px; font-size:20px; width:40px; height:40px; margin-right:10px; flex:0 0 auto; }
+.overlay{ position:fixed; inset:0; background:rgba(0,0,0,.55); opacity:0; pointer-events:none; transition:opacity .2s; z-index:40; }
+.overlay.open{ opacity:1; pointer-events:auto; }
+.drawer{ position:fixed; top:0; bottom:0; left:0; width:78%; max-width:320px; background:var(--surface); border-right:1px solid var(--line); transform:translateX(-100%); transition:transform .22s; z-index:50; padding:calc(env(safe-area-inset-top,0px) + 16px) 12px 16px; overflow-y:auto; }
+.drawer.open{ transform:none; }
+.drawer__head{ display:flex; gap:12px; align-items:center; padding:4px 6px 14px; border-bottom:1px solid var(--line); margin-bottom:6px; }
+.drawer__group{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); padding:14px 8px 6px; }
+.drawer__item{ display:block; width:100%; text-align:left; background:none; border:0; color:var(--text); font-size:16px; padding:12px 10px; border-radius:8px; }
+.drawer__item.active{ background:var(--surface-raised); color:var(--accent); }
+textarea{ width:100%; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:var(--radius); padding:12px; font:inherit; font-family:var(--font-mono); resize:vertical; }
+textarea:focus{ outline:none; border-color:var(--accent); }
+.profile-card{ display:flex; gap:12px; align-items:center; margin-bottom:10px; }
+.profile-card img{ width:64px; height:64px; border-radius:50%; object-fit:cover; background:var(--surface-raised); }
+.hist-item{ display:block; width:100%; text-align:left; background:none; border:0; border-bottom:1px solid var(--line); color:var(--text); padding:12px 4px; font-family:var(--font-mono); font-size:14px; }
+.hist-item small{ color:var(--text-muted); display:block; }
+.out-text{ font-family:var(--font-mono); word-break:break-all; white-space:pre-wrap; margin:6px 0 10px; }
