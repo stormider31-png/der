@@ -31,7 +31,7 @@ jobs:
       - name: Android SDK kur
         uses: android-actions/setup-android@v3
         with:
-          packages: "platform-tools platforms;android-34 build-tools;34.0.0"
+          packages: "platform-tools platforms;android-33 platforms;android-34 build-tools;33.0.2 build-tools;34.0.0"
 
       - name: Gradle için lisansları kabul et
         run: yes | sdkmanager --licenses || true
