@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.sadrazam.osinkatman5" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>OSİN KATMAN5</name>
+    <description>Açık kaynak istihbarat (OSINT) araç seti — OSİN KATMAN5</description>
+    <author email="" href="https://t.me/BY_SADRAZAM">BY_SADRAZAM</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="*" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="BackgroundColor" value="0xff0b0f14" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#0b0f14" />
+    <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
+        <preference name="android-minSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="34" />
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+        <edit-config target="application" file="AndroidManifest.xml" mode="merge">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+    </platform>
+</widget>

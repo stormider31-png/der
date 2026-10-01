@@ -1,0 +1,45 @@
+name: APK Derle
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: JDK 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Android SDK kur
+        uses: android-actions/setup-android@v3
+
+      - name: Cordova kur
+        run: npm install -g cordova
+
+      - name: Bağımlılıkları yükle
+        run: npm install
+
+      - name: Android platformunu ekle
+        run: cordova platform add android
+
+      - name: APK derle (debug)
+        run: cordova build android
+
+      - name: APK'yı yükle (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: osin-katman5-apk
+          path: platforms/android/app/build/outputs/apk/debug/*.apk

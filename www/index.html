@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>OSİN KATMAN5</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__mark">
+    <span class="topbar__glyph">K5</span>
+    <div class="topbar__title">
+      <span class="topbar__name">OSİN KATMAN5</span>
+      <span class="topbar__sub">açık kaynak istihbarat katmanı</span>
+    </div>
+  </div>
+  <div class="topbar__status" id="netStatus">
+    <span class="dot" id="netDot"></span>
+    <span id="netLabel">kontrol ediliyor</span>
+  </div>
+</header>
+
+<main class="screens">
+
+  <!-- PROFİL TARAMASI -->
+  <section class="screen active" data-screen="profil">
+    <h1 class="screen__title">Platform Profil Taraması</h1>
+    <p class="screen__hint">Bir kullanıcı adı girin, sonra kontrol etmek istediğiniz platforma dokunun. Her platform herkese açık profil sayfasını açar; var olup olmadığını orada gözle teyit edersiniz.</p>
+
+    <div class="field">
+      <label for="unameInput">Kullanıcı adı</label>
+      <input type="text" id="unameInput" placeholder="örn. by_sadrazam" autocapitalize="none" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="platform-grid" id="platformGrid"></div>
+
+    <div class="panel" id="profilResults"></div>
+  </section>
+
+  <!-- ALAN ADI -->
+  <section class="screen" data-screen="alanadi">
+    <h1 class="screen__title">Alan Adı İstihbaratı</h1>
+    <p class="screen__hint">DNS kayıtları, kayıt (RDAP) bilgisi ve sertifika şeffaflığı üzerinden alt alan adlarını sorgular. Tüm veriler herkese açık kayıtlardır.</p>
+
+    <div class="field">
+      <label for="domainInput">Alan adı</label>
+      <input type="text" id="domainInput" placeholder="örn. example.com" autocapitalize="none" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnDns">DNS Kayıtları</button>
+      <button class="btn" id="btnRdap">Kayıt Bilgisi (RDAP)</button>
+      <button class="btn" id="btnSubs">Alt Alan Adları</button>
+    </div>
+
+    <div class="panel" id="domainResults"></div>
+  </section>
+
+  <!-- IP BİLGİSİ -->
+  <section class="screen" data-screen="ip">
+    <h1 class="screen__title">IP Bilgisi</h1>
+    <p class="screen__hint">Bir IP adresinin genel coğrafi konum, servis sağlayıcı ve ağ (ASN) bilgisini herkese açık kayıtlardan getirir.</p>
+
+    <div class="field">
+      <label for="ipInput">IP adresi</label>
+      <input type="text" id="ipInput" placeholder="örn. 8.8.8.8" autocapitalize="none" autocomplete="off" spellcheck="false" inputmode="decimal">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnIp">Sorgula</button>
+    </div>
+
+    <div class="panel" id="ipResults"></div>
+  </section>
+
+  <!-- EXIF -->
+  <section class="screen" data-screen="exif">
+    <h1 class="screen__title">EXIF Analiz</h1>
+    <p class="screen__hint">Bir JPEG fotoğrafın içindeki meta verileri (cihaz, tarih, varsa konum) cihaz üzerinde, dışarı veri göndermeden okur.</p>
+
+    <label class="dropzone" for="exifFile">
+      <span class="dropzone__icon">＋</span>
+      <span>Fotoğraf seç</span>
+    </label>
+    <input type="file" id="exifFile" accept="image/jpeg" class="visually-hidden">
+
+    <div class="panel" id="exifResults"></div>
+  </section>
+
+  <!-- URL ANALİZ -->
+  <section class="screen" data-screen="url">
+    <h1 class="screen__title">URL Analiz</h1>
+    <p class="screen__hint">Bir bağlantının yapısını (alan adı, alt alan adı, parametreler) çözümler ve bilinen kısaltma servislerini işaretler. Bağlantıyı açmadan inceleme imkanı verir.</p>
+
+    <div class="field">
+      <label for="urlInput">Bağlantı</label>
+      <input type="text" id="urlInput" placeholder="https://..." autocapitalize="none" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnUrl">Çözümle</button>
+    </div>
+
+    <div class="panel" id="urlResults"></div>
+  </section>
+
+  <!-- HAKKINDA -->
+  <section class="screen" data-screen="hakkinda">
+    <h1 class="screen__title">Hakkında</h1>
+    <div class="panel about-panel">
+      <div class="about-row"><span>Uygulama</span><strong>OSİN KATMAN5</strong></div>
+      <div class="about-row"><span>Sürüm</span><strong>1.0.0</strong></div>
+      <div class="about-row"><span>Geliştirici</span><strong>@BY_SADRAZAM</strong></div>
+      <div class="about-row"><span>Kanal</span><a href="https://t.me/WallHack_Turkiye" target="_blank">t.me/WallHack_Turkiye</a></div>
+      <p class="about-note">OSİN KATMAN5, yalnızca herkese açık (public) kaynaklardan veri toplayan bir OSINT aracıdır. Kimlik doğrulama baypası, şifre/kimlik bilgisi toplama veya herhangi bir sisteme yetkisiz erişim/saldırı işlevi içermez.</p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="tabbar">
+  <button class="tab active" data-target="profil"><span class="tab__icon">◎</span><span>Profil</span></button>
+  <button class="tab" data-target="alanadi"><span class="tab__icon">⌁</span><span>Alan Adı</span></button>
+  <button class="tab" data-target="ip"><span class="tab__icon">▢</span><span>IP</span></button>
+  <button class="tab" data-target="exif"><span class="tab__icon">◈</span><span>EXIF</span></button>
+  <button class="tab" data-target="url"><span class="tab__icon">↗</span><span>URL</span></button>
+  <button class="tab" data-target="hakkinda"><span class="tab__icon">i</span><span>Hakkında</span></button>
+</nav>
+
+<script src="js/app.js"></script>
+</body>
+</html>
